@@ -40,3 +40,15 @@ There should be no URL query. Without a name URL query, the endpoint responds wi
 
 Solution
 --------
+// #1
+    test('?name=Guest', function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get('/hello')
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello Guest');
+          done();
+        });
+    });
